@@ -51,14 +51,14 @@ export default function NEDetails({ nerdoc }) {
               variant="h6"
               component="div"
               sx={{
-                padding: "8px",
+                padding: "5px",
                 backgroundColor: "#0C6AAB",
                 borderRadius: 2,
                 fontWeight: "bold",
                 color: "white",
               }}
             >
-              {nerdoc.document_text}
+              {nerdoc.api_docid + ": " + nerdoc.document_text}
             </Typography>
             <Typography
               sx={{ fontSize: 15, marginTop: 2, fontWeight: "bold" }}
@@ -73,10 +73,9 @@ export default function NEDetails({ nerdoc }) {
               gutterBottom
             >
               {nerdoc.named_entities.map((doc) => (
-                <Card.Text>
-                  {" "}
-                  {doc[0]} || {doc[1]}
-                </Card.Text>
+                <>
+                  {doc[0] + " || " + doc[1]} <br />
+                </>
               ))}
             </Typography>
           </CardContent>

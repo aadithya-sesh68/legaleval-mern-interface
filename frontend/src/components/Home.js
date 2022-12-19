@@ -1,11 +1,11 @@
-import Namedentity from "./Namedentity"
+import Namedentity from "./Namedentity";
 
 const Home = () => {
-    return (
-        <div className="home">
-                <Namedentity />
-        </div>
-    )
-}
+  return (
+    <div className="home">
+      <Namedentity />
+    </div>
+  );
+};
 
-export default Home
+export default Home;

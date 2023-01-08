@@ -6,6 +6,7 @@ const getAllNERDocs = async (req,res) => {
 
     res.status(200).json(nerdocs)
 }
+
 // get a single document's named entities
 const getNERDoc = async (req,res) => {
     const { id } = req.params

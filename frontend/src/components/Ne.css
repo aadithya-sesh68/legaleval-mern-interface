@@ -1,0 +1,16 @@
+.flex
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:first baseline;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+  
+/* .button-container Button {
+    display: inline-block;
+} */

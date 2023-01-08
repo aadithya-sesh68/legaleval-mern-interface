@@ -11,6 +11,14 @@ const nerSchema = new Schema({
         type: String, 
         required: true
     }, 
+    legal_source: {
+        type: String, 
+        required: true
+    },
+    case_name: {
+        type: String, 
+        required: true
+    },
     named_entities: [[]],
     entities_indices: [[]]
 })

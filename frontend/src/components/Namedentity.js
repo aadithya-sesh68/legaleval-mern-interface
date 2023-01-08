@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import NEDetails from "./NEDetails"
+import './Ne.css'
 
 const Namedentity = () => {
 
@@ -17,7 +18,7 @@ const Namedentity = () => {
         fetchNERdocs()
     }, [])
     return (
-            <div>
+            <div className="flex">
                 {nerdocs && nerdocs.map((nerdoc) => (
                     <NEDetails key={nerdoc._id} nerdoc={nerdoc} />
                 ))}

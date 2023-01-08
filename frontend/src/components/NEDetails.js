@@ -4,8 +4,9 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button"
-import './Ne.css';
+import Button from "@mui/material/Button";
+import Modal from "react-modal";
+import "./Ne.css";
 
 // const NEDetails = ({ nerdoc }) => {
 //   return (
@@ -33,6 +34,20 @@ const bull = (
 );
 
 export default function NEDetails({ nerdoc }) {
+  const [showTable, setShowTable] = React.useState(false);
+  function showTableFn() {
+    setShowTable(!showTable);
+  }
+  const [showModal, setShowModal] = React.useState(false);
+
+  function openModal() {
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+  }
+
   return (
     <Box sx={{ maxWidth: 360, margin: 10 }}>
       <Card
@@ -60,31 +75,71 @@ export default function NEDetails({ nerdoc }) {
                 color: "white",
               }}
             >
-              {nerdoc.api_docid + ": " + nerdoc.document_text}
+              Doc ID: {nerdoc.api_docid}
             </Typography>
+
             <Typography
               sx={{ fontSize: 15, marginTop: 2, fontWeight: "bold" }}
               color="text.primary"
               gutterBottom
             >
-              Text from Doc || Named Entity
-            </Typography>
-            <Typography
-              sx={{ fontSize: 15, marginTop: 2, fontWeight: "bold" }}
-              color="text.primary"
-              gutterBottom
-            >
-              {nerdoc.named_entities.map((doc) => (
+              {/* {nerdoc.named_entities.map((doc) => (
                 <>
                   {doc[0] + " || " + doc[1]} <br />
                 </>
-              ))}
+              ))} */}
+              {nerdoc.case_name}
             </Typography>
           </CardContent>
           <center>
             <div className="button-container">
-            <Button variant="contained" size="small" style={{maxWidth: '130px', maxHeight: '65px', minWidth: '130px', minHeight: '65px'}}>View Named Entities</Button>
-            <Button color="secondary" variant="contained" size="small" style={{maxWidth: '130px', maxHeight: '65px', minWidth: '130px', minHeight: '65px'}}>View Rhetorical Roles</Button>
+              <Button
+                variant="contained"
+                size="small"
+                style={{
+                  maxWidth: "130px",
+                  maxHeight: "65px",
+                  minWidth: "130px",
+                  minHeight: "65px",
+                }}
+                onClick={openModal}
+              >
+                View Named Entities
+              </Button>
+              <Modal isOpen={showModal} onRequestClose={closeModal}>
+                <button onClick={closeModal}>Close</button>
+                <h4>Document ID:{nerdoc.api_docid}</h4>
+                <h4>Legal Source:{nerdoc.legal_source}</h4>
+                <h4>Case Name:{nerdoc.case_name}</h4>
+                <table style={{ border: "1px solid" }}>
+                  <thead>
+                    <tr>
+                      <th style={{ border: "1px solid" }}>Legal Content</th>
+                      <th style={{ border: "1px solid" }}>
+                        Legal Named Entity
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ border: "1px solid" }}>
+                    {nerdoc.named_entities.map((doc) => (
+                      <>
+                        <tr>
+                          <td
+                            style={{ border: "1px solid", textAlign: "center" }}
+                          >
+                            {doc[0]}
+                          </td>
+                          <td
+                            style={{ border: "1px solid", textAlign: "center" }}
+                          >
+                            {doc[1]}
+                          </td>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </Modal>
             </div>
           </center>
         </React.Fragment>
@@ -92,5 +147,3 @@ export default function NEDetails({ nerdoc }) {
     </Box>
   );
 }
-
-

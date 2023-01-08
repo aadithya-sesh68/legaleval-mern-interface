@@ -2,8 +2,9 @@ import Namedentity from "./Namedentity";
 import SearchBar from "./SearchBar";
 import React from "react";
 import Modal from "react-modal";
+import Rhetoricalrole from "./Rhetoricalrole";
 
-const Home = () => {
+const RhetRolePage = () => {
   const [showTable, setShowTable] = React.useState(false);
   function showTableFn() {
     setShowTable(!showTable);
@@ -22,9 +23,9 @@ const Home = () => {
     <div className="home">
       <SearchBar />
 
-      <Namedentity />
+      <Rhetoricalrole />
     </div>
   );
 };
 
-export default Home;
+export default RhetRolePage;
